@@ -1,28 +1,30 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 
+# Only imports the class, not the entire module
 from ScannedDialog import ScannedDialog
 from Database import Database
 from UPCNotFoundDialog import UPCNotFoundDialog
 from MaterialSelectDialog import MaterialSelectDialog
-from ServoFuncs import openLid, closeLids
+from TrashDialog import TrashDialog
+import ServoFuncs
 from Worker import Worker
 
 
 class EmmaGUI(object):
-    #Creates Main Window
+    # Creates Main Window
     def setupMain(self, main_EMMA):
-        #Main Window
+        # Main Window
         main_EMMA.setObjectName("main_EMMA")
-        main_EMMA.resize(800, 400)                              #resizes main window to fit small screen
+        main_EMMA.resize(800, 400)                              # resizes main window to fit small screen
         self.centralwidget = QtWidgets.QWidget(main_EMMA)
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
-        main_EMMA.setWindowTitle("EMMA")        #title of window when not fullscreen
+        main_EMMA.setWindowTitle("EMMA")        # title of window when not fullscreen
         main_EMMA.setCentralWidget(self.centralwidget)
 
-        #Barcode LineEdit
+        # Barcode LineEdit
         self.le_Barcode = QtWidgets.QLineEdit(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -31,9 +33,9 @@ class EmmaGUI(object):
         self.le_Barcode.setSizePolicy(sizePolicy)
         self.le_Barcode.setObjectName("le_Barcode")
         self.gridLayout.addWidget(self.le_Barcode, 2, 3, 1, 1)
-        self.le_Barcode.returnPressed.connect(self.scanBarcode) #when enter is pressed, scanBarcode function runs
+        self.le_Barcode.returnPressed.connect(self.scanBarcode) # when enter is pressed, scanBarcode function runs
 
-        #Welcome Label
+        # Welcome Label
         self.lbl_Welcome = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -49,7 +51,7 @@ class EmmaGUI(object):
         self.gridLayout.addWidget(self.lbl_Welcome, 1, 0, 1, 4)
         self.lbl_Welcome.setText("Welcome to E.M.M.A.!")
 
-        #Scan Label
+        # Scan Label
         self.lbl_Scan = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -64,7 +66,7 @@ class EmmaGUI(object):
         self.gridLayout.addWidget(self.lbl_Scan, 2, 0, 1, 3)
         self.lbl_Scan.setText("Please Scan Barcode...")
 
-        #Select Label
+        # Select Label
         self.lbl_Select = QtWidgets.QLabel(self.centralwidget)
         font = QtGui.QFont()
         font.setPointSize(16)
@@ -76,7 +78,7 @@ class EmmaGUI(object):
         self.lbl_Select.setText("Or, press the button below if your item does not have one.\n"
                                 "Please make sure lids are closed before continuing to avoid crashing system.")
         
-        #No Barcode Button
+        # No Barcode Button
         self.btn_NoBarcode = QtWidgets.QPushButton(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -87,11 +89,11 @@ class EmmaGUI(object):
         font.setPointSize(20)
         self.btn_NoBarcode.setFont(font)
         self.btn_NoBarcode.setObjectName("btn_NoBarcode")
-        self.gridLayout.addWidget(self.btn_NoBarcode, 4, 0, 1, 4)   #row, column, height, width
+        self.gridLayout.addWidget(self.btn_NoBarcode, 4, 0, 1, 4)   # row, column, height, width
         self.btn_NoBarcode.setText("Item does not have a barcode")
         self.btn_NoBarcode.clicked.connect(self.openMaterialSelectDialog)
 
-        #Team Label
+        # Team Label
         self.lbl_Team = QtWidgets.QLabel(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -107,7 +109,7 @@ class EmmaGUI(object):
         self.lbl_Team.setText("♻Clean Green Dream Team in Partner with Waste Management®♻")
 
         self.threadpool = QThreadPool()
-        #QtCore.QMetaObject.connectSlotsByName(main_EMMA)
+        # QtCore.QMetaObject.connectSlotsByName(main_EMMA)
 
     def scanBarcode(self):
         self.scan = Database()        
@@ -115,18 +117,20 @@ class EmmaGUI(object):
         
         if self.upc != "close":
             self.results = self.scan.scanDatabase(self.upc)
-            self.le_Barcode.clear()             #clears barcode from box
+            self.le_Barcode.clear()             # clears barcode from box
             
             if self.results[0] == "Not Found":
                 self.openUPCNotFoundDialog()
             else:
-                self.material = self.results[0]     #picks apart returned tuple to get variables
+                self.material = self.results[0]     # picks apart returned tuple to get variables
                 self.recycle = self.results[1][0]
                 self.rinse = self.results[1][1]
-                self.openScannedDialog(self.material, self.recycle, self.rinse)
+                if self.material == "Other":
+                    self.openTrashDialog()
+                else:
+                    self.openScannedDialog(self.material, self.recycle, self.rinse)
         else:
-            main_EMMA.close()   #enables user to close window when fullscreen
-
+            main_EMMA.close()   # enables user to close window when fullscreen
 
     def openScannedDialog(self, material, recycle, rinse):
         self.Scanned = QtWidgets.QDialog()
@@ -147,8 +151,7 @@ class EmmaGUI(object):
             lidNum = 3
 
         # Pass the function to execute
-        worker = Worker(lambda: openLid(lidNum))
-    
+        worker = Worker(lambda: ServoFuncs.openLid(lidNum))
         # Execute
         self.threadpool.start(worker)  
         
@@ -163,18 +166,21 @@ class EmmaGUI(object):
         self.ui = MaterialSelectDialog()
         self.ui.setupMaterialSelect(self.MaterialSelect)
         self.MaterialSelect.show()
-	
 
+    def openTrashDialog(self):
+        self.Trash = QtWidgets.QDialog()
+        self.ui = TrashDialog()
+        self.ui.setupTrash(self.Trash)
+        self.Trash.show()
 
 if __name__ == "__main__":
     print("Making sure lids are fully closed before starting EMMA.")
-    closeLids()
-    
+    ServoFuncs.closeLids()
+    # This is the code the actually starts the GUI
     import sys                  
     app = QtWidgets.QApplication(sys.argv)
     main_EMMA = QtWidgets.QMainWindow()
     ui = EmmaGUI()
     ui.setupMain(main_EMMA)
-    main_EMMA.show()#FullScreen()
+    main_EMMA.showFullScreen()
     sys.exit(app.exec_())
-

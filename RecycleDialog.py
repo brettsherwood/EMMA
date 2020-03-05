@@ -2,14 +2,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class RecycleDialog(object):
     def setupRecycle(self, Dialog):
-        #Main Window
+        # Main Window
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         Dialog.setWindowTitle("Thank you for recycling!")
 
-        #Recycle Label
+        # Recycle Label
         self.lbl_recycle = QtWidgets.QLabel(Dialog)
         font = QtGui.QFont()
         font.setPointSize(18)
@@ -22,7 +22,7 @@ class RecycleDialog(object):
                                  " place your item in the correct bin."
                                  " Thank you for recycling!")
         
-        #Okay Button Box
+        # Okay Button Box
         self.bb_okay = QtWidgets.QDialogButtonBox(Dialog)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -35,6 +35,7 @@ class RecycleDialog(object):
         self.bb_okay.accepted.connect(Dialog.accept)
         self.bb_okay.rejected.connect(Dialog.reject)
         
+# Needed to run window by itself
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

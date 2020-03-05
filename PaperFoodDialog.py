@@ -8,14 +8,14 @@ from Worker import Worker
 
 class PaperFoodDialog(object):
     def setupPaperFood(self, Dialog):
-        #Main Window
+        # Main Window
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         Dialog.setWindowTitle("Food?")
 
-        #Food Label
+        # Food Label
         self.lbl_foodliquid = QtWidgets.QLabel(Dialog)
         font = QtGui.QFont()
         font.setPointSize(18)
@@ -26,7 +26,7 @@ class PaperFoodDialog(object):
         self.gridLayout.addWidget(self.lbl_foodliquid, 0, 0, 1, 2)
         self.lbl_foodliquid.setText("Did your item contain food?")
 
-        #Yes Button
+        # Yes Button
         self.btn_yes = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -42,7 +42,7 @@ class PaperFoodDialog(object):
         self.btn_yes.clicked.connect(self.openFoodWasteDialog)
         self.btn_yes.clicked.connect(Dialog.close)
 
-        #No Button
+        # No Button
         self.btn_no = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -57,10 +57,11 @@ class PaperFoodDialog(object):
         self.btn_no.setText("No")
         self.btn_no.clicked.connect(self.openRecycleDialog)
         self.btn_no.clicked.connect(Dialog.close)
-        #OPEN PAPER LID HERE
+        # OPEN PAPER LID HERE
         self.btn_no.clicked.connect(self.openPaperLid)
-        
-        #Cancel Button Box
+        self.threadpool = QThreadPool()
+
+        # Cancel Button Box
         self.bb_cancel = QtWidgets.QDialogButtonBox(Dialog)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -72,8 +73,6 @@ class PaperFoodDialog(object):
         self.gridLayout.addWidget(self.bb_cancel, 3, 0, 1, 2)
         self.bb_cancel.accepted.connect(Dialog.accept)
         self.bb_cancel.rejected.connect(Dialog.reject)
-
-        self.threadpool = QThreadPool()
 
     def openFoodWasteDialog(self):
         self.FoodWaste = QtWidgets.QDialog()
@@ -88,11 +87,12 @@ class PaperFoodDialog(object):
         self.Recycle.show()
 
     def openPaperLid(self):
+        # Pass the function to execute
         worker = Worker(lambda: openLid(2))
-    
-        # Execute
+        #  Execute
         self.threadpool.start(worker)
         
+# Needed to run window by itself
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

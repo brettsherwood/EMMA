@@ -6,14 +6,14 @@ from WetPaperDialog import WetPaperDialog
 
 class PaperSelectDialog(object):
     def setupPaperSelect(self, Dialog):
-        #Main Window
+        # Main Window
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         Dialog.setWindowTitle("Select Paper Type")
 
-        #Paper Select Label
+        # Paper Select Label
         self.lbl_paperSelect = QtWidgets.QLabel(Dialog)
         font = QtGui.QFont()
         font.setPointSize(16)
@@ -24,7 +24,7 @@ class PaperSelectDialog(object):
         self.gridLayout.addWidget(self.lbl_paperSelect, 0, 0, 1, 3)
         self.lbl_paperSelect.setText("What type of paper is your item made of?")
         
-        #Printer/Notebook Button
+        # Printer/Notebook Button
         self.btn_regular = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -40,7 +40,7 @@ class PaperSelectDialog(object):
         self.btn_regular.clicked.connect(self.openWetPaperDialog)
         self.btn_regular.clicked.connect(Dialog.close)
 
-        #Newspaper Button
+        # Newspaper Button
         self.btn_newspaper = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -56,7 +56,7 @@ class PaperSelectDialog(object):
         self.btn_newspaper.clicked.connect(self.openWetPaperDialog)
         self.btn_newspaper.clicked.connect(Dialog.close)
         
-        #Cardboard Button
+        # Cardboard Button
         self.btn_cardboard = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -72,7 +72,7 @@ class PaperSelectDialog(object):
         self.btn_cardboard.clicked.connect(self.openPaperFoodDialog)
         self.btn_cardboard.clicked.connect(Dialog.close)
 
-        #Coffee Cup Button
+        # Coffee Cup Button
         self.btn_coffee = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -88,7 +88,7 @@ class PaperSelectDialog(object):
         self.btn_coffee.clicked.connect(self.openTrashDialog)
         self.btn_coffee.clicked.connect(Dialog.close)
         
-        #None Button
+        # None Button
         self.btn_none = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -104,7 +104,7 @@ class PaperSelectDialog(object):
         self.btn_none.clicked.connect(self.openPaperTrashDialog)
         self.btn_none.clicked.connect(Dialog.close)
 
-        #Cancel Button Box
+        # Cancel Button Box
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -141,6 +141,7 @@ class PaperSelectDialog(object):
         self.ui.setupWetPaper(self.WetPaper)
         self.WetPaper.show()
 
+# Needed to test window by itself
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

@@ -4,14 +4,14 @@ from NoPlasticBagDialog import NoPlasticBagDialog
 
 class RecycleSymbolDialog(object):
     def setupRecycleSymbol(self, Dialog):
-        #Main Window
+        # Main Window
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         Dialog.setWindowTitle("Is Recycle Symbol Present?")
 
-        #Symbol Label
+        # Symbol Label
         self.lbl_symbolPresent = QtWidgets.QLabel(Dialog)
         font = QtGui.QFont()
         font.setPointSize(18)
@@ -20,10 +20,9 @@ class RecycleSymbolDialog(object):
         self.lbl_symbolPresent.setWordWrap(True)
         self.lbl_symbolPresent.setObjectName("lbl_symbolPresent")
         self.gridLayout.addWidget(self.lbl_symbolPresent, 0, 0, 1, 2)
-        self.lbl_symbolPresent.setText("Is the recycle symbol (♻️) present on"
-                                       " your item?")
+        self.lbl_symbolPresent.setText("Is the recycle symbol (♻️) present on your item?")
 
-        #Yes Button
+        # Yes Button
         self.btn_yes = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -39,7 +38,7 @@ class RecycleSymbolDialog(object):
         self.btn_yes.clicked.connect(self.openYesPlasticBagDialog)
         self.btn_yes.clicked.connect(Dialog.close)
 
-        #No Button
+        # No Button
         self.btn_no = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -55,7 +54,7 @@ class RecycleSymbolDialog(object):
         self.btn_no.clicked.connect(self.openNoPlasticBagDialog)
         self.btn_no.clicked.connect(Dialog.close)
 
-        #Cancel Button Box
+        # Cancel Button Box
         self.bb_cancel = QtWidgets.QDialogButtonBox(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -84,6 +83,7 @@ class RecycleSymbolDialog(object):
         self.ui.setupNoPlasticBag(self.NoPlasticBag)
         self.NoPlasticBag.show()
 
+# Needed to run window by itself
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

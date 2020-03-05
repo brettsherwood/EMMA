@@ -2,20 +2,21 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import *
 
 from RecycleDialog import RecycleDialog
+from TrashDialog import TrashDialog
 from ServoFuncs import openLid
 from Worker import Worker
 
 
 class FoodWasteDialog(object):
     def setupFoodWaste(self, Dialog):
-        #Main Window
+        # Main Window
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         Dialog.setWindowTitle("Food Waste?")
 
-        #Food Waste Label
+        # Food Waste Label
         self.lbl_foodwaste = QtWidgets.QLabel(Dialog)
         font = QtGui.QFont()
         font.setPointSize(14)
@@ -27,7 +28,7 @@ class FoodWasteDialog(object):
         self.lbl_foodwaste.setText("Does you item have food waste on it "
                                     "(Grease, Wax coating, etc.)?")
 
-        #Yes Button
+        # Yes Button
         self.btn_yes = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -43,7 +44,7 @@ class FoodWasteDialog(object):
         self.btn_yes.clicked.connect(self.openTrashDialog)
         self.btn_yes.clicked.connect(Dialog.close)
 
-        #No Button
+        # No Button
         self.btn_no = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -58,12 +59,11 @@ class FoodWasteDialog(object):
         self.btn_no.setText("No")
         self.btn_no.clicked.connect(self.openRecycleDialog)
         self.btn_no.clicked.connect(Dialog.close)
-        #OPEN PAPER LID HERE
+        # OPEN PAPER LID HERE
         self.btn_no.clicked.connect(self.openPaperLid)
-
         self.threadpool = QThreadPool()
         
-        #Cancel Button Box
+        # Cancel Button Box
         self.bb_cancel = QtWidgets.QDialogButtonBox(Dialog)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -89,11 +89,12 @@ class FoodWasteDialog(object):
         self.Trash.show()
 
     def openPaperLid(self):
+        # Pass the function to execute
         worker = Worker(lambda: openLid(2))
-    
-        # Execute
+        #  Execute
         self.threadpool.start(worker)
-        
+
+# Needed to test window by itself
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

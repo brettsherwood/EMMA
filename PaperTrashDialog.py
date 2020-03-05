@@ -2,14 +2,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class PaperTrashDialog(object):
     def setupPaperTrash(self, Dialog):
-        #Main Window
+        # Main Window
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         Dialog.setWindowTitle("Please throw away.")
         
-        #Trash Label
+        # Trash Label
         self.lbl_trash = QtWidgets.QLabel(Dialog)
         font = QtGui.QFont()
         font.setPointSize(18)
@@ -22,7 +22,7 @@ class PaperTrashDialog(object):
                                "Tissues, or Sticky Notes, are not "
                                "recyclable. Please throw them away.")
         
-        #Okay Button Box
+        # Okay Button Box
         self.bb_okay = QtWidgets.QDialogButtonBox(Dialog)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -35,6 +35,7 @@ class PaperTrashDialog(object):
         self.bb_okay.accepted.connect(Dialog.accept)
         self.bb_okay.rejected.connect(Dialog.reject)
 
+# Needed to run window by itself
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

@@ -2,14 +2,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class PlasticBagRecycleDialog(object):
     def setupPlasticBagRecycle(self, Dialog):
-        #Main Window
+        # Main Window
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         Dialog.setWindowTitle("Please Recycle Your Plastic Bag")
 
-        #Recycle Plastic Bag Label        
+        # Recycle Plastic Bag Label        
         self.lbl_recyclePlasticBag = QtWidgets.QLabel(Dialog)
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -21,7 +21,7 @@ class PlasticBagRecycleDialog(object):
         self.lbl_recyclePlasticBag.setText("Please place your plastic bag in"
                                            " the plastic bag on the wall to be"
                                            " recycled.")
-        #Okay Button Box
+        # Okay Button Box
         self.bb_okay = QtWidgets.QDialogButtonBox(Dialog)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -34,6 +34,7 @@ class PlasticBagRecycleDialog(object):
         self.bb_okay.accepted.connect(Dialog.accept)
         self.bb_okay.rejected.connect(Dialog.reject)
 
+# Needed to run window by itself
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

@@ -2,14 +2,14 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class TrashDialog(object):
     def setupTrash(self, Dialog):
-        #Main Window
+        # Main Window
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         Dialog.setWindowTitle("Please throw away.")
         
-        #Trash Label
+        # Trash Label
         self.lbl_trash = QtWidgets.QLabel(Dialog)
         font = QtGui.QFont()
         font.setPointSize(22)
@@ -21,7 +21,7 @@ class TrashDialog(object):
         self.lbl_trash.setText("Your item is not recyclable,"
                                " please throw it in the trash.")
         
-        #Okay Button Box
+        # Okay Button Box
         self.bb_okay = QtWidgets.QDialogButtonBox(Dialog)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -34,6 +34,7 @@ class TrashDialog(object):
         self.bb_okay.accepted.connect(Dialog.accept)
         self.bb_okay.rejected.connect(Dialog.reject)
 
+# Needed to test window by itself
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

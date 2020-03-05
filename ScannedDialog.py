@@ -1,16 +1,16 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class ScannedDialog(object):
-    #Creates Scanned Dialog
+    # Creates Scanned Dialog
     def setupScanned(self, Scanned, Material, Recycle, Rinse):
-        #Dialog Window
+        # Dialog Window
         Scanned.setObjectName("Scanned")
         Scanned.resize(400, 300)
         self.verticalLayout = QtWidgets.QVBoxLayout(Scanned)
         self.verticalLayout.setObjectName("verticalLayout")
         Scanned.setWindowTitle("Scanned")
 
-        #Material Label
+        # Material Label
         self.lbl_material = QtWidgets.QLabel(Scanned)
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -20,7 +20,7 @@ class ScannedDialog(object):
         self.verticalLayout.addWidget(self.lbl_material)
         self.lbl_material.setText(Material)
 
-        #Recycle Label
+        # Recycle Label
         self.lbl_recycle = QtWidgets.QLabel(Scanned)
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -30,7 +30,7 @@ class ScannedDialog(object):
         self.verticalLayout.addWidget(self.lbl_recycle)
         self.lbl_recycle.setText(Recycle)
 
-        #Rinse Label
+        # Rinse Label
         self.lbl_rinse = QtWidgets.QLabel(Scanned)
         font = QtGui.QFont()
         font.setPointSize(20)
@@ -40,7 +40,7 @@ class ScannedDialog(object):
         self.verticalLayout.addWidget(self.lbl_rinse)
         self.lbl_rinse.setText(Rinse)
 
-        #Close Dialog Button
+        # Close Dialog Button
         self.btn_close = QtWidgets.QDialogButtonBox(Scanned)
         self.btn_close.setOrientation(QtCore.Qt.Horizontal)
         self.btn_close.setStandardButtons(QtWidgets.QDialogButtonBox.Close)
@@ -51,7 +51,7 @@ class ScannedDialog(object):
         self.btn_close.rejected.connect(Scanned.reject)
 
         
-#Only needed to test window on its own
+# Only needed to test window on its own
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

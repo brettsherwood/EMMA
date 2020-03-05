@@ -4,14 +4,14 @@ from PlasticFoodLiquidDialog import PlasticFoodLiquidDialog
 
 class PlasticNumberDialog(object):
     def setupPlasticNumber(self, Dialog):
-        #Main Window
+        # Main Window
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         Dialog.setWindowTitle("Select Plastic Number")
 
-        #Select Label
+        # Select Label
         self.lbl_select = QtWidgets.QLabel(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -29,7 +29,7 @@ class PlasticNumberDialog(object):
                                 " symbol on your plastic item. This is usually"
                                 " located on the bottom.")
         
-        #Button 1
+        # Button 1
         self.btn_1 = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -45,7 +45,7 @@ class PlasticNumberDialog(object):
         self.btn_1.clicked.connect(self.openPlasticFoodLiquidDialog)
         self.btn_1.clicked.connect(Dialog.close)
         
-        #Button 2
+        # Button 2
         self.btn_2 = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -61,7 +61,7 @@ class PlasticNumberDialog(object):
         self.btn_2.clicked.connect(self.openPlasticFoodLiquidDialog)
         self.btn_2.clicked.connect(Dialog.close)
         
-        #Button 3
+        # Button 3
         self.btn_3 = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -77,7 +77,7 @@ class PlasticNumberDialog(object):
         self.btn_3.clicked.connect(self.openPlasticFoodLiquidDialog)
         self.btn_3.clicked.connect(Dialog.close)
         
-        #Button 4
+        # Button 4
         self.btn_4 = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -93,7 +93,7 @@ class PlasticNumberDialog(object):
         self.btn_4.clicked.connect(self.openPlasticFoodLiquidDialog)
         self.btn_4.clicked.connect(Dialog.close)
         
-        #Button 5
+        # Button 5
         self.btn_5 = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -109,7 +109,7 @@ class PlasticNumberDialog(object):
         self.btn_5.clicked.connect(self.openPlasticFoodLiquidDialog)
         self.btn_5.clicked.connect(Dialog.close)
 
-        #Button 6
+        # Button 6
         self.btn_6 = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -125,7 +125,7 @@ class PlasticNumberDialog(object):
         self.btn_6.clicked.connect(self.openTrashDialog)
         self.btn_6.clicked.connect(Dialog.close)
 
-        #Button 7
+        # Button 7
         self.btn_7 = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -141,7 +141,7 @@ class PlasticNumberDialog(object):
         self.btn_7.clicked.connect(self.openPlasticFoodLiquidDialog)
         self.btn_7.clicked.connect(Dialog.close)
 
-        #Cancel Button Box
+        # Cancel Button Box
         self.bb_cancel = QtWidgets.QDialogButtonBox(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -167,6 +167,7 @@ class PlasticNumberDialog(object):
         self.ui.setupPlasticFoodLiquid(self.PlasticFoodLiquid)
         self.PlasticFoodLiquid.show()
 
+# Needed to run window by itself
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

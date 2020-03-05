@@ -23,12 +23,11 @@ def openLid(pinNum):
     lidNum = gpioPins[pinNum]
 
     GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(lidNum, GPIO.OUT)
+    GPIO.setup(lidNum, GPIO.OUT)    # set pin as an output
 
     lid = GPIO.PWM(lidNum,50)
     lid.start(7.5)
 
-    
     lid.ChangeDutyCycle(7.5)    # 90 degrees
     sleep(5)
     lid.ChangeDutyCycle(2.5)

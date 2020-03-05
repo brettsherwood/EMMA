@@ -6,14 +6,14 @@ from AluminumRinseDialog import AluminumRinseDialog
 
 class MaterialSelectDialog(object):
     def setupMaterialSelect(self, Dialog):
-        #Main Window
+        # Main Window
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         Dialog.setWindowTitle("Select Material")
 
-        #Material Select Label
+        # Material Select Label
         self.lbl_materialSelect = QtWidgets.QLabel(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -29,7 +29,7 @@ class MaterialSelectDialog(object):
         self.gridLayout.addWidget(self.lbl_materialSelect, 0, 0, 1, 3)
         self.lbl_materialSelect.setText("Please select the material your item is made of:")
 
-        #Paper Button
+        # Paper Button
         self.btn_paper = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -45,7 +45,7 @@ class MaterialSelectDialog(object):
         self.btn_paper.clicked.connect(self.openPaperSelectDialog)
         self.btn_paper.clicked.connect(Dialog.close)
 
-        #Plastic Button
+        # Plastic Button
         self.btn_plastic = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -59,9 +59,9 @@ class MaterialSelectDialog(object):
         self.gridLayout.addWidget(self.btn_plastic, 1, 1, 1, 1)
         self.btn_plastic.setText("Plastic")
         self.btn_plastic.clicked.connect(self.openRecycleSymbolDialog)
-        self.btn_plastic.clicked.connect(Dialog.close)      #REMEMBER THIS
+        self.btn_plastic.clicked.connect(Dialog.close)
 
-        #Glass Button
+        # Glass Button
         self.btn_glass = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -77,7 +77,7 @@ class MaterialSelectDialog(object):
         self.btn_glass.clicked.connect(self.openGlassRinseDialog)
         self.btn_glass.clicked.connect(Dialog.close)
 
-        #Aluminum Button
+        # Aluminum Button
         self.btn_aluminum = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -93,7 +93,7 @@ class MaterialSelectDialog(object):
         self.btn_aluminum.clicked.connect(self.openAluminumRinseDialog)
         self.btn_aluminum.clicked.connect(Dialog.close)
 
-        #Other Button
+        # Other Button
         self.btn_other = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -107,7 +107,7 @@ class MaterialSelectDialog(object):
         self.gridLayout.addWidget(self.btn_other, 2, 2, 1, 1)
         self.btn_other.setText("Other")       
 
-        #Cancel Button Box
+        # Cancel Button Box
         self.bb_cancel = QtWidgets.QDialogButtonBox(Dialog)
         self.bb_cancel.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel)
         self.bb_cancel.setCenterButtons(True)
@@ -116,7 +116,7 @@ class MaterialSelectDialog(object):
         self.bb_cancel.accepted.connect(Dialog.accept)
         self.bb_cancel.rejected.connect(Dialog.reject)
 
-        #Recycle Emoji Label
+        # Recycle Emoji Label
         self.lbl_recycleEmoji = QtWidgets.QLabel(Dialog)
         font = QtGui.QFont()
         font.setPointSize(34)
@@ -150,6 +150,7 @@ class MaterialSelectDialog(object):
         self.ui.setupAluminumRinse(self.AluminumRinse)
         self.AluminumRinse.show()
         
+# Needed to test window by itself
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

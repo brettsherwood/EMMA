@@ -4,14 +4,14 @@ from PlasticNumberDialog import PlasticNumberDialog
 
 class YesPlasticBagDialog(object):
     def setupYesPlasticBag(self, Dialog):
-        #Main Window
+        # Main Window
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         Dialog.setWindowTitle("Plastic Bag?")
 
-        #Plastic Bag Label
+        # Plastic Bag Label
         self.lbl_plasticbag = QtWidgets.QLabel(Dialog)
         font = QtGui.QFont()
         font.setPointSize(18)
@@ -22,7 +22,7 @@ class YesPlasticBagDialog(object):
         self.gridLayout.addWidget(self.lbl_plasticbag, 0, 0, 1, 2)
         self.lbl_plasticbag.setText("Is your item a plastic bag?")
 
-        #Yes Button
+        # Yes Button
         self.btn_yes = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -38,7 +38,7 @@ class YesPlasticBagDialog(object):
         self.btn_yes.clicked.connect(self.openPlasticBagRecycleDialog)
         self.btn_yes.clicked.connect(Dialog.close)
 
-        #No Button
+        # No Button
         self.btn_no = QtWidgets.QPushButton(Dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
@@ -54,7 +54,7 @@ class YesPlasticBagDialog(object):
         self.btn_no.clicked.connect(self.openPlasticNumberDialog)
         self.btn_no.clicked.connect(Dialog.close)
 
-        #Cancel Button Box
+        # Cancel Button Box
         self.bb_cancel = QtWidgets.QDialogButtonBox(Dialog)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -79,6 +79,7 @@ class YesPlasticBagDialog(object):
         self.ui.setupPlasticNumber(self.PlasticNumber)
         self.PlasticNumber.show()
 
+# Needed to test window by itself
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

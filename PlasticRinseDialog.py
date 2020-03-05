@@ -7,14 +7,14 @@ from Worker import Worker
 
 class PlasticRinseDialog(object):
     def setupPlasticRinse(self, Dialog):
-        #Main Window
+        # Main Window
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
         self.gridLayout = QtWidgets.QGridLayout(Dialog)
         self.gridLayout.setObjectName("gridLayout")
         Dialog.setWindowTitle("Please Rinse your Item")
 
-        #Rinse Label
+        # Rinse Label
         self.lbl_rinse = QtWidgets.QLabel(Dialog)
         font = QtGui.QFont()
         font.setPointSize(18)
@@ -27,7 +27,7 @@ class PlasticRinseDialog(object):
                                " getting the other recyclables dirty."
                                " Then you may recycle your item.")
 
-        #Rinse Button
+        # Rinse Button
         self.btn_rinse = QtWidgets.QPushButton(Dialog)
         font = QtGui.QFont()
         font.setPointSize(16)
@@ -37,9 +37,8 @@ class PlasticRinseDialog(object):
         self.btn_rinse.setText("My item has been rinsed.")
         self.btn_rinse.clicked.connect(self.openRecycleDialog)
         self.btn_rinse.clicked.connect(Dialog.close)
-        #OPEN PLASTIC LID HERE
+        # OPEN PLASTIC LID HERE
         self.btn_rinse.clicked.connect(self.openPlasticLid)
-
         self.threadpool = QThreadPool()
 
     def openRecycleDialog(self):
@@ -49,11 +48,12 @@ class PlasticRinseDialog(object):
         self.Recycle.show()
 
     def openPlasticLid(self):
+        # Pass the function to execute
         worker = Worker(lambda: openLid(0))
-    
-        # Execute
+        #  Execute
         self.threadpool.start(worker)
         
+# Needed to run window by itself
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
