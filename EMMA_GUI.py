@@ -5,7 +5,6 @@ from ScannedDialog import ScannedDialog
 from Database import Database
 from UPCNotFoundDialog import UPCNotFoundDialog
 from MaterialSelectDialog import MaterialSelectDialog
-from TrashDialog import TrashDialog
 from ServoFuncs import openLid, closeLids
 from Worker import Worker
 
@@ -124,10 +123,7 @@ class EmmaGUI(object):
                 self.material = self.results[0]     #picks apart returned tuple to get variables
                 self.recycle = self.results[1][0]
                 self.rinse = self.results[1][1]
-                if self.material == "Other":
-                    self.openTrashDialog()
-                else:
-                    self.openScannedDialog(self.material, self.recycle, self.rinse)
+                self.openScannedDialog(self.material, self.recycle, self.rinse)
         else:
             main_EMMA.close()   #enables user to close window when fullscreen
 
@@ -167,12 +163,7 @@ class EmmaGUI(object):
         self.ui = MaterialSelectDialog()
         self.ui.setupMaterialSelect(self.MaterialSelect)
         self.MaterialSelect.show()
-
-    def openTrashDialog(self):
-        self.Trash = QtWidgets.QDialog()
-        self.ui = TrashDialog()
-        self.ui.setupTrash(self.Trash)
-        self.Trash.show()
+	
 
 
 if __name__ == "__main__":
@@ -184,6 +175,6 @@ if __name__ == "__main__":
     main_EMMA = QtWidgets.QMainWindow()
     ui = EmmaGUI()
     ui.setupMain(main_EMMA)
-    main_EMMA.showFullScreen()
+    main_EMMA.show()#FullScreen()
     sys.exit(app.exec_())
 

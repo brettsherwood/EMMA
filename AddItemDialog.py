@@ -72,7 +72,6 @@ class AddItemDialog(object):
 
         self.retranslateUi(Dialog)
         self.buttonBox.accepted.connect(self.checkInput)
-        self.buttonBox.accepted.connect(Dialog.accept)
         self.buttonBox.rejected.connect(Dialog.reject)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
@@ -86,7 +85,7 @@ class AddItemDialog(object):
             self.openInvalidItemDialog()
         else:
             self.newItem(upc, material, recycle, rinse)
-            
+            self.Dialog.close()
             
     def newItem(self, upc, material, recycle, rinse):
         APPENDFILE = open('UPCList.csv', 'a')       #opens file to append new entry

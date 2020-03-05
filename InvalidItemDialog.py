@@ -27,14 +27,11 @@ class InvalidItemDialog(object):
         self.bb_okay.accepted.connect(Dialog.accept)
         self.bb_okay.rejected.connect(Dialog.reject)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
-        
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Invalid Item"))
-        self.label.setText(_translate("Dialog", "Invalid item entry. Please make sure all \n"
-                                      "fields are filled and that you tap inside the \n"
-                                      "barcode field before you scan the item."))
+        self.label.setText(_translate("Dialog", "Invalid item entry. Please try again."))
 
 
 if __name__ == "__main__":
